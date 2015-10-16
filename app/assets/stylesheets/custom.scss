@@ -16,6 +16,10 @@ div {
   }
 }
 
+.admin-content .alert {
+  margin-top: 30px;
+}
+
 .alert-alert {
   @extend .alert-danger
 }
