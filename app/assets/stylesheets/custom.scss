@@ -1,0 +1,50 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+a {
+  color: #000;
+
+  &:hover {
+    color: red;
+  }
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+
+.alert-alert {
+  @extend .alert-danger
+}
+.alert-notice {
+  @extend .alert-success
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: rgba(177, 5, 5, 0.95);
+  }
+}
+
+#error_explanation {
+  @extend .alert-danger;
+  padding: 10px;
+
+  ul {
+    margin: 0 0 30px 0;
+  }
+}
+
+ul.ui-autocomplete {
+  width: 30%;
+  list-style: none;
+  padding: 0px;
+
+  li.ui-menu-item {
+    padding: 4px 10px;
+  }
+}
