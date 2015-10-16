@@ -1,0 +1,58 @@
+<%= form_for([:admin, @news], html: {multipart: true}) do |f| %>
+  <% if @news.errors.any? %>
+    <div id="error_explanation">
+      <h2>A Notícia não foi salva porque <%= pluralize(@news.errors.count, "erro") %> foram encontrados</h2>
+
+      <ul>
+      <% @news.errors.each do |field, message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if (!@news.admin.nil?) %>
+      Postado por <%= @news.admin.name %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image, "Imagem" %>
+    <%= f.file_field :image %>
+    <br>
+    <%= image_tag @news.image.url(:thumb) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category_news_id, "Categoria*" %>
+    <%= f.autocomplete_field :category_news_id, autocomplete_category_news_name_admin_news_index_path, class: "form-control", placeholder: "Exemplo: Acidente", autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title, "Título*" %>
+    <%= f.text_field :title, class: 'form-control', placeholder: "Título", autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :subtitle, "Subtítulo*" %>
+    <%= f.text_field :subtitle, class: 'form-control', placeholder: "Subtítulo" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tags, "Palavras Chaves*" %>
+    <%= f.text_field :tags, class: 'form-control', placeholder: "Exemplo: economia, salário, compras" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content, "Conteúdo*" %>
+    <%= f.text_area :content, class: 'form-control tinymce', rows: 20, placeholder: "Digite aqui o conteúdo da notícia" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar", class: "btn btn-success" %>
+    <%= link_to '<span class="glyphicon glyphicon-arrow-left"> Voltar</span>'.html_safe, admin_news_index_path, class: "btn btn-warning" %>
+  </div>
+
+  <%= tinymce %>
+<% end %>

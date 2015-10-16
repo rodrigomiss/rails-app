@@ -1,0 +1,23 @@
+<%= form_for([:admin, @category_news]) do |f| %>
+  <% if @category_news.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category_news.errors.count, "erro foi encontrado") %> e o registro não pode ser salvo! </h2>
+
+      <ul>
+      <% @category_news.errors.each do |field, message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field col-md-8">
+    <%= f.label :name, "Nome*" %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Exemplo: Policial, Acidente", autofocus: true %>
+  </div>
+
+  <div class="actions col-md-8">
+    <%= f.submit "Salvar", class: "btn btn-success" %>
+    <%= link_to '<span class="glyphicon glyphicon-arrow-left"> Voltar</span>'.html_safe, admin_category_news_index_path, class: "btn btn-warning" %>
+  </div>
+<% end %>

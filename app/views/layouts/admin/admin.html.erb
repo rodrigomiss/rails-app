@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Painel Administrativo - Portal Candói</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= tinymce_assets %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container-fluid dashboard_admin">
+        <div class="row">        
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Portal Candói</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Help</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="row">
+          <br><br>
+            <div class="col-sm-3 col-md-2 sidebar" style="background:#e3e3e3">
+                <br>
+                <div class="info-current-admin thumbnail">
+                    <div class="caption">
+                    	<%= image_tag("placeholders/placeholder-user.png", width: "100%") %>
+                    	<br>
+                    	<%= current_admin_admin.name %>
+                    	<br>
+                    	<%= current_admin_admin.email %>
+                    	<%= link_to("Sair", destroy_admin_admin_session_path, :method => :delete) %>
+                    </div>
+                </div>
+
+                <ul class="nav nav-sidebar">
+                    <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Administradores</a></li>
+                    <li><%= link_to '<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Notícias'.html_safe, admin_news_index_path %></li>
+                    <li><a href="#">Eventos</a></li>
+                    <li><a href="#">Garota</a></li>
+
+                    
+                </ul>
+            </div>
+            <div class="col-sm-9 col-md-10 main">
+              <div class="col-md-12"><%= flash_message %></div>              
+                
+              <%= yield %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

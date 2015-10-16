@@ -1,0 +1,28 @@
+<h1>Notícias</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th width="10%">Criado em</th>
+      <th width="30%">Titulo</th>
+      <th>Subtítulo</th>
+      <th width="15%">Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @news.each do |news| %>
+      <tr>
+        <td><%= format_date(news.created_at) %></td>
+        <td><%= news.title %></td>
+        <td><%= news.subtitle %></td>
+        <td><%= link_to 'Editar', edit_admin_news_path(news), class: "btn btn-default" %>
+        <%= link_to 'Excluir', admin_news_path(news), class: "btn btn-danger", method: :delete, data: { confirm: 'Confirma Exclusão?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "<span class='glyphicon glyphicon-plus'> Cadastrar Notícia</span>".html_safe, new_admin_news_path, class: "btn-sm btn-success" %>
